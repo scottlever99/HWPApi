@@ -1,4 +1,5 @@
-using HWPApi;
+using HWPApi.Data;
+using HWPApi.Services;
 using Microsoft.Extensions.Options;
 using MySql.EntityFrameworkCore.Extensions;
 using System.Configuration;
@@ -13,6 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMySQLServer<HWPDatabase>(builder.Configuration.GetConnectionString("Default"));
 
+builder.Services.AddScoped<TemplateService, TemplateService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,7 +25,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
