@@ -15,6 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMySQLServer<HWPDatabase>(builder.Configuration.GetConnectionString("Default"));
 
 builder.Services.AddScoped<TemplateService, TemplateService>();
+builder.Services.AddScoped<LoginService>();
 
 var app = builder.Build();
 
