@@ -1,8 +1,6 @@
 using HWPApi.Data;
 using HWPApi.Services;
-using Microsoft.Extensions.Options;
-using MySql.EntityFrameworkCore.Extensions;
-using System.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,10 +10,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddMySQLServer<HWPDatabase>(builder.Configuration.GetConnectionString("Default"));
 
-builder.Services.AddScoped<TemplateService, TemplateService>();
+string conString = builder.Configuration.GetConnectionString("Default") ?? "";
+builder.Services.AddDbContext<HWPDatabase>(options => options.UseMySQL(conString));
+
+builder.Services.AddScoped<TemplateService>();
 builder.Services.AddScoped<LoginService>();
+builder.Services.AddScoped<ExerciseService>();
+
 
 var app = builder.Build();
 
