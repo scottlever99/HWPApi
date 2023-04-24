@@ -1,5 +1,5 @@
 ﻿using HWPApi.Data;
-using HWPApi.Data.Models;
+using HWPApi.Models;
 
 namespace HWPApi.Services
 {
@@ -12,10 +12,28 @@ namespace HWPApi.Services
             _dbContext = dbContext;
         }
 
-        public bool Login(string username, string password, out User? user)
+        public bool Login(string username, string password, out LoginResponse? user)
         {
-            user = _dbContext.User.Where(w => w.email ==  username && w.password == password).FirstOrDefault();
-            return user != null;
+            var res = _dbContext.User.Where(w => w.email == username && w.password == password).FirstOrDefault();
+
+            if (res == null)
+            {
+                user = null;
+                return false;
+            }
+
+            user = new LoginResponse()
+            {
+                id = res.id,
+                firstname = res.firstname,
+                lastname = res.lastname,
+                email = res.email,
+                age = res.age,
+                enabled = res.enabled,
+                gateway = res.gateway
+            };
+
+            return true;
         }
 
         public bool IsEnabled(int id)

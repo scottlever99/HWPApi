@@ -13,6 +13,7 @@ namespace HWPApi.Data
         public DbSet<Template_Exercise> Template_Exercise { get; set; }
         public DbSet<Template_Exercise_Set> Template_Exercise_Set { get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<History> History { get; set; }
 
     }
 }

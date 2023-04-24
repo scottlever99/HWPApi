@@ -17,7 +17,7 @@ builder.Services.AddDbContext<HWPDatabase>(options => options.UseMySQL(conString
 builder.Services.AddScoped<TemplateService>();
 builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<ExerciseService>();
-
+builder.Services.AddScoped<HistoryService>();
 
 var app = builder.Build();
 
