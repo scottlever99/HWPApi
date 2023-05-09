@@ -14,17 +14,17 @@ namespace HWPApi.Models
             
             if (exercises.Count > 2) 
             {
-                Exercise1 = $"{exercises[0].Name} x {exercises[0].Sets.Count}";
-                Exercise2 = $"{exercises[1].Name} x {exercises[1].Sets.Count}";
-                Exercise3 = $"{exercises[2].Name} x {exercises[2].Sets.Count}";
+                Exercise1 = $"{exercises[0].Sets.Count} x {exercises[0].Name}";
+                Exercise2 = $"{exercises[1].Sets.Count} x {exercises[1].Name}";
+                Exercise3 = $"{exercises[2].Sets.Count} x {exercises[2].Name}";
             }
             else
             {
                 for(int i = 0; i < exercises.Count; i++)
                 {
-                    if (i == 0) Exercise1 = $"{exercises[i].Name} x {exercises[i].Sets.Count}";
-                    if (i == 1) Exercise2 = $"{exercises[i].Name} x {exercises[i].Sets.Count}";
-                    if (i == 2) Exercise3 = $"{exercises[i].Name} x {exercises[i].Sets.Count}";
+                    if (i == 0) Exercise1 = $"{exercises[i].Sets.Count} x {exercises[i].Name}";
+                    if (i == 1) Exercise2 = $"{exercises[i].Sets.Count} x {exercises[i].Name}";
+                    if (i == 2) Exercise3 = $"{exercises[i].Sets.Count} x {exercises[i].Name}";
                 }
             }
         }
